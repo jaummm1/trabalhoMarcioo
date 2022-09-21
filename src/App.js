@@ -33,10 +33,19 @@ export const App = () => {
 
   const [score, setScore] = useState({})
   return (
-    Object.keys(score).map(nome => {
-      return <div className="container">
-        <h1>Nome:</h1><p>{nome} <h1>Pontuação:</h1> {score[nome]}</p>
-      </div>
-    })
+    <div>
+      <table style={{ border: "1px solid", width: "100%" }}>
+        <tr>
+          <th style={{ border: "1px solid", fontSize: "25px" }}>Nome</th>
+          <th style={{ border: "1px solid", fontSize: "25px" }}>Pontuação</th>
+        </tr>
+        {
+          Object.keys(score).map(nome => {
+            return <tr>
+              <td style={{ border: "1px solid", fontSize: "25px" }}>{nome}</td>
+              <td style={{ border: "1px solid", fontSize: "25px" }}>{score[nome]}</td>
+            </tr>
+          })}
+      </table></div>
   );
 };
