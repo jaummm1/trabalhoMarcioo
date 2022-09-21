@@ -21,26 +21,22 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// Initialize Realtime Database and get a reference to the service
 const database = getDatabase(app);
-const dbRef = ref(getDatabase())
+const dbRef = ref(getDatabase());
 
 export const App = () => {
-    get(child(dbRef, `ranking`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        console.log(snapshot.val());
-      } else {
-        console.log("No data available");
-      }
-    }).catch((error) => {
-      console.error(error);
+  get(child(dbRef, `ranking`)).then((snapshot) => {
+    setScore(snapshot.val())
+  }
+  )
+
+  const [score, setScore] = useState({})
+  return (
+    Object.keys(score).map(nome => {
+      return <div className="container">
+        <h1>Nome:</h1><p>{nome} <h1>Pontuação:</h1> {score[nome]}</p>
+      </div>
     })
-
-    const  [score, setScore] = useState({})
-     return (
-      Object.keys(score).map(nome => {
-        return <div className="container">
-          <b>{nome}</b>: {score[nome]} <br/>
-        </div>
-      }))
-    }
-
+  );
+};

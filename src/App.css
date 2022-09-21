@@ -12,6 +12,10 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+div.cima {
+  display: flex;
+  justify-content: space-between;
+}
 
 .App-header {
   background-color: #282c34;
